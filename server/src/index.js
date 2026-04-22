@@ -74,6 +74,51 @@ app.delete("/projects/:id", (req, res) => {
   });
 })
 
+/*
+
+khalx CODE
+
+*/
+
+app.get('/todos', (req, res) => {
+  res.status(200).json({
+    ok: true,
+    message: "Todos retrieved successfully",
+    todos
+  });
+})
+
+app.post('/todos', (req, res) => {
+  const { name } = req.body;
+
+  todos.push(name, id = todos.length + 1, completed = false)
+  res.status(200).json({
+    ok: true,
+    message: "Todo created successfully"
+  });
+})
+
+app.put('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const { completed } = req.body;
+  const todo = todos.find(todo => todo.id == id)
+  todo.completed = completed
+  res.status(200).json({
+    ok: true,
+    message: "Todo updated successfully"
+  });
+})
+
+app.delete('/todos/:id', (req, res) => {
+  const { id } = req.params;
+  const todo = todos.find(todo => todo.id == id)
+  todos.splice(todos.indexOf(todo), 1)
+  res.status(200).json({
+    ok: true,
+    message: "Todo deleted successfully"
+  });
+})
+
 app.get('/', (req, res) => {
   res.send('Welcome to our todo-app');
 });
@@ -81,4 +126,7 @@ app.get('/', (req, res) => {
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
-}); 
+});
+
+//
+
