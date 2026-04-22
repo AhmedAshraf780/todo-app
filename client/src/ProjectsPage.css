@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Page wrapper ────────────────────────────────────────────────────────── */
+.pp {
+  position: relative;
+  min-height: 100dvh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #080b14;
+  color: #e2e8f0;
+  overflow-x: hidden;
+}
+
+/* ── Background orbs ─────────────────────────────────────────────────────── */
+.pp__bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.pp__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: ppOrb 16s ease-in-out infinite alternate;
+}
+.pp__orb--1 {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(99,102,241,.28) 0%, transparent 70%);
+  top: -140px; left: -100px;
+}
+.pp__orb--2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(52,211,153,.2) 0%, transparent 70%);
+  bottom: -100px; right: -80px;
+  animation-delay: -8s;
+}
+@keyframes ppOrb {
+  0%   { transform: translate(0,0); }
+  100% { transform: translate(30px, 25px); }
+}
+
+/* ── Inner container ─────────────────────────────────────────────────────── */
+.pp__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ── Top bar ─────────────────────────────────────────────────────────────── */
+.pp__topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  animation: ppFadeUp 0.5s ease both;
+}
+
+.pp__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.pp__back:hover { color: #f1f5f9; background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.15); }
+
+.pp__title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  background: linear-gradient(135deg, #818cf8, #34d399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Error banner ────────────────────────────────────────────────────────── */
+.pp__error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(239,68,68,.12);
+  border: 1px solid rgba(239,68,68,.3);
+  color: #f87171;
+  font-size: 14px;
+  cursor: pointer;
+  animation: ppFadeUp 0.3s ease both;
+}
+.pp__error-close { opacity: 0.6; }
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+.pp__layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  animation: ppFadeUp 0.5s 0.1s ease both;
+}
+@media (max-width: 780px) {
+  .pp__layout { flex-direction: column; }
+  .pp__sidebar { width: 100% !important; }
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.pp__sidebar { width: 300px; flex-shrink: 0; }
+
+.pp__card {
+  background: rgba(15, 18, 30, 0.85);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 20px;
+  padding: 24px;
+  backdrop-filter: blur(18px);
+}
+.pp__card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 20px;
+  letter-spacing: -0.3px;
+}
+
+/* ── Form ────────────────────────────────────────────────────────────────── */
+.pp__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pp__field { display: flex; flex-direction: column; gap: 6px; }
+.pp__label { font-size: 12px; font-weight: 600; color: #64748b; letter-spacing: 0.4px; text-transform: uppercase; }
+
+/* ── Inputs ──────────────────────────────────────────────────────────────── */
+.pp__input {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #e2e8f0;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  resize: none;
+}
+.pp__input::placeholder { color: #334155; }
+.pp__input:focus {
+  border-color: rgba(129,140,248,.5);
+  background: rgba(129,140,248,.06);
+}
+.pp__textarea { line-height: 1.55; }
+.pp__input--inline { background: rgba(255,255,255,.06); }
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+.pp__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 18px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.pp__btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.pp__btn--primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(99,102,241,.35);
+}
+.pp__btn--primary:hover:not(:disabled) {
+  box-shadow: 0 8px 28px rgba(99,102,241,.5);
+  transform: translateY(-1px);
+}
+
+.pp__btn--success {
+  background: rgba(52,211,153,.15);
+  color: #34d399;
+  border: 1px solid rgba(52,211,153,.3);
+}
+.pp__btn--success:hover:not(:disabled) { background: rgba(52,211,153,.25); }
+
+.pp__btn--danger {
+  background: rgba(239,68,68,.15);
+  color: #f87171;
+  border: 1px solid rgba(239,68,68,.3);
+}
+.pp__btn--danger:hover:not(:disabled) { background: rgba(239,68,68,.25); }
+
+.pp__btn--ghost {
+  background: rgba(255,255,255,.05);
+  color: #64748b;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.pp__btn--ghost:hover:not(:disabled) { color: #e2e8f0; background: rgba(255,255,255,.08); }
+
+.pp__btn--sm { font-size: 13px; padding: 7px 13px; border-radius: 8px; }
+
+/* ── Icon action buttons ─────────────────────────────────────────────────── */
+.pp__icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  background: rgba(255,255,255,.04);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.pp__icon-btn--edit { color: #818cf8; }
+.pp__icon-btn--edit:hover { background: rgba(129,140,248,.15); border-color: rgba(129,140,248,.3); transform: scale(1.08); }
+.pp__icon-btn--delete { color: #f87171; }
+.pp__icon-btn--delete:hover { background: rgba(239,68,68,.15); border-color: rgba(239,68,68,.3); transform: scale(1.08); }
+
+/* ── Main area ───────────────────────────────────────────────────────────── */
+.pp__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Search ──────────────────────────────────────────────────────────────── */
+.pp__search-wrap {
+  position: relative;
+}
+.pp__search-icon {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: #475569;
+  display: flex;
+  pointer-events: none;
+}
+.pp__search {
+  padding-left: 40px;
+}
+
+/* ── Count ───────────────────────────────────────────────────────────────── */
+.pp__count {
+  font-size: 12px;
+  color: #475569;
+  letter-spacing: 0.2px;
+}
+
+/* ── Loading / Empty ─────────────────────────────────────────────────────── */
+.pp__loading, .pp__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 64px 24px;
+  color: #334155;
+  font-size: 14px;
+  text-align: center;
+}
+.pp__empty-icon {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: center;
+  color: #1e293b;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+.pp__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* ── Project Card ────────────────────────────────────────────────────────── */
+.pp__project-card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(15,18,30,.85);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  animation: ppSlideIn 0.4s ease both;
+}
+.pp__project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,.12);
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+.pp__project-card--editing {
+  border-color: rgba(129,140,248,.4);
+  box-shadow: 0 0 0 1px rgba(129,140,248,.2);
+}
+
+.pp__project-accent {
+  width: 4px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #818cf8, #34d399);
+}
+
+.pp__project-body {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pp__project-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: -0.3px;
+  word-break: break-word;
+}
+.pp__project-desc {
+  font-size: 13px;
+  color: #475569;
+  line-height: 1.55;
+  word-break: break-word;
+}
+.pp__no-desc { font-style: italic; color: #1e293b; }
+
+.pp__project-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 10px 12px 0;
+  flex-shrink: 0;
+}
+
+/* ── Edit / Delete confirm panels ────────────────────────────────────────── */
+.pp__edit-mode, .pp__delete-confirm {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+.pp__edit-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pp__delete-msg {
+  font-size: 14px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+.pp__delete-msg strong { color: #f1f5f9; }
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+.pp__spinner {
+  display: inline-block;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: ppSpin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+.pp__spinner--lg { width: 28px; height: 28px; }
+@keyframes ppSpin { to { transform: rotate(360deg); } }
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+@keyframes ppFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ppSlideIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
