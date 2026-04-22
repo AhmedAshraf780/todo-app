@@ -8,12 +8,10 @@ const projects = []
 
 const app = express();
 app.use(express.json())
-app.use(express.json());
 
 app.use(cors({
     origin: 'http://localhost:5173',
 }));
-
 /*
  *
  * ASHRAF CODE
@@ -127,6 +125,11 @@ app.get('/', (req, res) => {
 
 
 //=================================================================
+/*
+
+HIMAS CODE
+
+*/
 app.post('/notes', (req, res) => {
     const note = {
         id: notes.length + 1,
@@ -170,5 +173,6 @@ app.delete('/notes/:id', (req, res) => {
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
+
 //
 

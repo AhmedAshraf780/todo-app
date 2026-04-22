@@ -103,7 +103,7 @@ export default function HomePage({ onNavigate }: Props) {
       <header className="home__header">
         <div className="home__greeting">
           <span className="home__wave">👋</span>
-          <span>{greeting}, Ahmed</span>
+          <span>{greeting}, HIMA,khalex, ASHRAF</span>
         </div>
         <h1 className="home__headline">
           Your workspace,<br />

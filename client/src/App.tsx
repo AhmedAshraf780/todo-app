@@ -2,6 +2,7 @@ import { useState } from 'react'
 import HomePage from './HomePage'
 import ProjectsPage from './ProjectsPage'
 import TodosPage from './TodosPage'
+import NotesPage from './NotesPage'
 
 type Page = 'home' | 'todos' | 'notes' | 'projects'
 
@@ -10,8 +11,8 @@ function App() {
 
   if (page === 'projects') return <ProjectsPage onBack={() => setPage('home')} />
   if (page === 'todos') return <TodosPage onBack={() => setPage('home')} />
+  if (page === 'notes') return <NotesPage onBack={() => setPage('home')} />
 
-  // notes page can be added later
   return <HomePage onNavigate={(dest) => setPage(dest as Page)} />
 }
 
